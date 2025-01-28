@@ -34,7 +34,7 @@ body {
   font-family: "Roboto", serif;
   font-size: 16px;
   font-weight: 400;
-  background-color: #333;
+  background-color: #222;
 }
 
 .wrapper {
@@ -47,4 +47,5 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  margin: 0 0 50px 0;
 }
