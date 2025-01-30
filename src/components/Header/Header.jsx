@@ -8,6 +8,7 @@ import {
   Smartphone,
   Wrench,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const headerLinks = [
@@ -53,7 +54,7 @@ const Header = () => {
             {headerLinks.map((link) => (
               <li key={link.id} className={styles["header-menu__item"]}>
                 <div>{link.icon}</div>
-                {link.title}
+                <Link to={link.path}>{link.title}</Link>
               </li>
             ))}
           </ul>
