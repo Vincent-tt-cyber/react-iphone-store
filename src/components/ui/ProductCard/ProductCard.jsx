@@ -14,9 +14,12 @@ const ProductCard = () => {
     discount: "-10%",
   };
 
+  // Добавить в избранное////
   const onClickFavorite = () => {
     setIsFavourite(!isFavourite);
   };
+
+  // Добавить в корзину/////
 
   return (
     <div className={styles["card"]}>
