@@ -14,7 +14,7 @@ const ProductCard = () => {
     discount: "-10%",
   };
 
-  // Добавить в избранное
+  // Добавить в избранное/
   const onClickFavorite = () => {
     setIsFavourite(!isFavourite);
   };
