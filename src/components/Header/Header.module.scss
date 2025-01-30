@@ -18,6 +18,7 @@
     }
     h1 {
       color: #f67373;
+      font-size: clamp(1rem, 0.75rem + 1.25vw, 1.875rem);
     }
 
     svg {
@@ -37,7 +38,7 @@
     gap: 20px;
     &__item {
       color: #b35353;
-      font-size: 20px;
+      font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
       font-weight: 400;
       cursor: pointer;
       transition: all 0.3s ease;

@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -6,6 +7,22 @@
   // padding: 10px;
   border-radius: 15px;
   cursor: pointer;
+
+  &__favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    svg {
+      transition: all 0.3s ease;
+    }
+    &:hover {
+      svg {
+        transition: all 0.3s ease;
+        fill: #f67373;
+      }
+    }
+  }
   &__content {
     &-price {
       display: flex;
