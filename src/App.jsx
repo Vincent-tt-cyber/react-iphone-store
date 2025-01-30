@@ -18,8 +18,6 @@ function App() {
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
       </LayoutProducts>
       <Footer />
     </main>
