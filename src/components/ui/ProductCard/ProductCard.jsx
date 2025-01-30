@@ -19,7 +19,7 @@ const ProductCard = () => {
     setIsFavourite(!isFavourite);
   };
 
-  // Добавить в корзину
+  // Добавить в корзину/////
 
   return (
     <div className={styles["card"]}>
