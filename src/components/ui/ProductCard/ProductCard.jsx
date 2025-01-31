@@ -2,16 +2,18 @@ import React from "react";
 import styles from "./ProductCard.module.scss";
 import { Heart, Star } from "lucide-react";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   const [isFavourite, setIsFavourite] = React.useState(false);
+  const [discountPercent, setDiscountPercent] = React.useState(0);
+  // console.log(product);
 
-  const product = {
-    id: 1,
-    title: "iPhone 11",
-    description: "128GB, Space Gray",
-    price: "18 000₽",
-    oldPrice: "20 000₽",
-    discount: "-10%",
+  // Расчет скидки в процентах
+  const discountPriceHandle = (product) => {
+    const { oldPrice, price } = product;
+
+    const result = Math.floor(((oldPrice - price) / oldPrice) * 100);
+    setDiscountPercent(result);
+    console.log("result =>", result);
   };
 
   // Добавить в избранное////
@@ -19,7 +21,9 @@ const ProductCard = () => {
     setIsFavourite(!isFavourite);
   };
 
-  // Добавить в корзину/////
+  React.useEffect(() => {
+    discountPriceHandle(product);
+  }, []);
 
   return (
     <div className={styles["card"]}>
@@ -32,10 +36,7 @@ const ProductCard = () => {
         />
       </button>
       <div className={styles["card__img"]}>
-        <img
-          src="https://cheboksary.stores-apple.com/upload/iblock/1ae/kjp8t7g92174c7rcmi5i7sl1ek5keskp.jpg"
-          alt="Name"
-        />
+        <img src={product.imageUrl[0]} alt="Name" />
       </div>
       <div className={styles["card__content"]}>
         <div className={styles["card__content-price"]}>
@@ -46,13 +47,15 @@ const ProductCard = () => {
             {product.oldPrice}
           </span>
           <span className={styles["card__content-price__discount"]}>
-            {product.discount}
+            {discountPercent}%
           </span>
         </div>
         <div className="card__content-info">
-          <h3 className={styles["card__content-info__title"]}>iPhone 11</h3>
+          <h3 className={styles["card__content-info__title"]}>
+            {product.title}
+          </h3>
           <span className={styles["card__content-info__description"]}>
-            128GB, Space Gray
+            {product.store}, <span>{product.color}</span>
           </span>
         </div>
       </div>

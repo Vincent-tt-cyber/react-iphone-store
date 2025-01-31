@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./LayoutProducts.module.scss";
 
-const LayoutProducts = ({ children }) => {
+const LayoutProducts = ({ children, type }) => {
   return (
     <div className="container">
-      <div className={styles["grid"]}>{children}</div>
+      <div className={type == "grid" ? styles["grid"] : styles["column"]}>
+        {children}
+      </div>
     </div>
   );
 };
