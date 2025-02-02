@@ -1,0 +1,20 @@
+.not-found {
+  &__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    h1 {
+      color: #fff;
+    }
+    a {
+      font-size: 20px;
+      color: rgba(#f67373, 0.7);
+      transition: all 0.3s ease;
+      &:hover {
+        color: #f67373;
+      }
+    }
+  }
+}
