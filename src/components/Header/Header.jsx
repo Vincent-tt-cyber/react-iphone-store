@@ -7,9 +7,11 @@ import {
   Smartphone,
   Wrench,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
   const headerLinks = [
     {
       id: 1,
@@ -41,20 +43,24 @@ const Header = () => {
     <header className={styles["header"]}>
       <div className="container">
         <div className={styles["header-row"]}>
-          <div className={styles["header-logo"]}>
+          <Link to="/" className={styles["header-logo"]}>
             <h1>React iPhone Store</h1>
             <Smartphone
               className={styles["header-logo__icon"]}
               size={40}
               color="#f67373"
             />
-          </div>
+          </Link>
           <ul className={styles["header-menu"]}>
             {headerLinks.map((link) => (
               <li key={link.id} className={styles["header-menu__item"]}>
                 <Link
                   to={link.path}
-                  className={styles["header-menu__item-link"]}
+                  className={
+                    location.pathname === link.path
+                      ? styles["header-menu__item-link-active"]
+                      : styles["header-menu__item-link"]
+                  }
                 >
                   <div>{link.icon}</div>
                   {link.title}

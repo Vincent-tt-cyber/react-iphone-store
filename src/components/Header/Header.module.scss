@@ -51,6 +51,17 @@
           color: #f67373;
           transition: all 0.3s ease;
         }
+        &-active {
+          color: #f67373;
+          font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+          font-weight: 400;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+        }
       }
     }
   }
