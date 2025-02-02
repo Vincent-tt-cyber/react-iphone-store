@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Header.module.scss";
 import {
   Cable,
@@ -53,8 +52,13 @@ const Header = () => {
           <ul className={styles["header-menu"]}>
             {headerLinks.map((link) => (
               <li key={link.id} className={styles["header-menu__item"]}>
-                <div>{link.icon}</div>
-                <Link to={link.path}>{link.title}</Link>
+                <Link
+                  to={link.path}
+                  className={styles["header-menu__item-link"]}
+                >
+                  <div>{link.icon}</div>
+                  {link.title}
+                </Link>
               </li>
             ))}
           </ul>

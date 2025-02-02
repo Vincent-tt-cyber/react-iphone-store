@@ -1,5 +1,4 @@
 .card {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -7,29 +6,19 @@
   // padding: 10px;
   border-radius: 15px;
   cursor: pointer;
-
-  &__favorite {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    svg {
-      transition: all 0.3s ease;
-    }
-    &:hover {
-      svg {
-        transition: all 0.3s ease;
-        fill: #f67373;
-      }
-    }
-  }
   &__content {
     &-price {
       display: flex;
-      justify-content: flex-start;
-      align-items: end;
+      flex-direction: column;
+      align-items: start;
       gap: 5px;
-      margin: 0 0 5px 0;
+      margin: 0 0 10px 0;
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
       &__new {
         font-size: 20px;
         color: #f67373;
@@ -41,10 +30,15 @@
       }
       &__discount {
         font-size: 16px;
-        color: #f67373;
+        // color: #f67373;
+        color: #fff;
+        background-color: #f67373;
+        padding: 0 5px;
+        border-radius: 8px;
       }
     }
     &-info {
+      width: 100%;
       &__title {
         font-size: 16px;
         color: #ccc;
