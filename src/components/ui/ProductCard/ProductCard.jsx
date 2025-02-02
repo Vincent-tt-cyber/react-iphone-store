@@ -1,24 +1,16 @@
 import React from "react";
 import styles from "./ProductCard.module.scss";
-import { Heart, Star } from "lucide-react";
+import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const [isFavourite, setIsFavourite] = React.useState(false);
   const [discountPercent, setDiscountPercent] = React.useState(0);
-  // console.log(product);
-
   // Расчет скидки в процентах
   const discountPriceHandle = (product) => {
     const { oldPrice, price } = product;
 
     const result = Math.floor(((oldPrice - price) / oldPrice) * 100);
     setDiscountPercent(result);
-    console.log("result =>", result);
-  };
-
-  // Добавить в избранное////
-  const onClickFavorite = () => {
-    setIsFavourite(!isFavourite);
   };
 
   React.useEffect(() => {
@@ -27,27 +19,29 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className={styles["card"]}>
-      <button className={styles["card__favorite"]}>
-        <Heart
-          size={20}
-          color={isFavourite ? "#f67373" : "#000"}
-          fill={isFavourite ? "#f67373" : "transparent"}
-          onClick={() => onClickFavorite()}
-        />
-      </button>
       <div className={styles["card__img"]}>
-        <img src={product.imageUrl[0]} alt="Name" />
+        <Link to={`/product/${product.id}`}>
+          <img src={product.imageUrl[0]} alt="Name" />
+        </Link>
       </div>
-      <div className={styles["card__content"]}>
+      <Link to={`/product/${product.id}`} className={styles["card__content"]}>
         <div className={styles["card__content-price"]}>
+          <div className={styles["card__content-price__header"]}>
+            <span className={styles["card__content-price__old"]}>
+              {product.oldPrice.toLocaleString("ru-RU", {
+                style: "currency",
+                currency: "RUB",
+              })}
+            </span>
+            <span className={styles["card__content-price__discount"]}>
+              {discountPercent}%
+            </span>
+          </div>
           <span className={styles["card__content-price__new"]}>
-            {product.price}
-          </span>{" "}
-          <span className={styles["card__content-price__old"]}>
-            {product.oldPrice}
-          </span>
-          <span className={styles["card__content-price__discount"]}>
-            {discountPercent}%
+            {product.price.toLocaleString("ru-RU", {
+              style: "currency",
+              currency: "RUB",
+            })}
           </span>
         </div>
         <div className="card__content-info">
@@ -58,7 +52,7 @@ const ProductCard = ({ product }) => {
             {product.store}, <span>{product.color}</span>
           </span>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
