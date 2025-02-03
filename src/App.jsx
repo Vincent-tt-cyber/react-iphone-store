@@ -12,10 +12,12 @@ function App() {
   return (
     <main className="wrapper">
       <Header />
-      <Routes>
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<HomePage />} />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </div>
       <Footer />
     </main>
   );

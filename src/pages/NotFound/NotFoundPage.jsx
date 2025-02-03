@@ -5,11 +5,9 @@ export const NotFoundPage = () => {
   return (
     <>
       <div className={styles["not-found"]}>
-        <div className="container">
-          <div className={styles["not-found__content"]}>
-            <h1>Страница не найдена</h1>
-            <Link to="/">Вернуться на главную</Link>
-          </div>
+        <div className={styles["not-found__content"]}>
+          <h1>Страница не найдена</h1>
+          <Link to="/">Вернуться на главную</Link>
         </div>
       </div>
     </>
