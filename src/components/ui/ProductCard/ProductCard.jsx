@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import styles from "./ProductCard.module.scss";
-import { Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
