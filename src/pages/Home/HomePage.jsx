@@ -130,12 +130,10 @@ export const HomePage = () => {
     },
   ]);
   return (
-    <div className="container">
-      <LayoutProducts>
-        {productsData.map((groups) => (
-          <GroupProduct key={groups.id} id={groups.id} groupList={groups} />
-        ))}
-      </LayoutProducts>
-    </div>
+    <LayoutProducts type="column">
+      {productsData.map((groups) => (
+        <GroupProduct key={groups.id} id={groups.id} groupList={groups} />
+      ))}
+    </LayoutProducts>
   );
 };
