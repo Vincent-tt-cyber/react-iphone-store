@@ -3,6 +3,7 @@ import {
   Cable,
   Home,
   LayoutDashboard,
+  Menu,
   ShoppingBag,
   Smartphone,
   Wrench,
@@ -47,35 +48,40 @@ const Header = () => {
             <h1>React iPhone Store</h1>
             <Smartphone
               className={styles["header-logo__icon"]}
-              size={40}
+              size={30}
               color="#f67373"
             />
           </Link>
-          <ul className={styles["header-menu"]}>
-            {headerLinks.map((link) => (
-              <li key={link.id} className={styles["header-menu__item"]}>
-                <Link
-                  to={link.path}
-                  className={
-                    location.pathname === link.path
-                      ? styles["header-menu__item-link-active"]
-                      : styles["header-menu__item-link"]
-                  }
-                >
-                  <div>{link.icon}</div>
-                  {link.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <button className={styles["header-cart__btn"]}>
-            <ShoppingBag
-              color="#fff"
-              className={styles["header-cart__btn-icon"]}
-              size={25}
-            />
-            <span className={styles["header-cart__btn-count"]}>0</span>
-          </button>
+          <nav className={styles["header__nav"]}>
+            <ul className={styles["header-menu"]}>
+              {headerLinks.map((link) => (
+                <li key={link.id} className={styles["header-menu__item"]}>
+                  <Link
+                    to={link.path}
+                    className={
+                      location.pathname === link.path
+                        ? styles["header-menu__item-link-active"]
+                        : styles["header-menu__item-link"]
+                    }
+                  >
+                    <div>{link.icon}</div>
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className={styles["header-menu-burger"]}>
+              <Menu color="#fff" size={25} />
+            </div>
+            <button className={styles["header-cart__btn"]}>
+              <ShoppingBag
+                color="#fff"
+                className={styles["header-cart__btn-icon"]}
+                size={30}
+              />
+              <span className={styles["header-cart__btn-count"]}>0</span>
+            </button>
+          </nav>
         </div>
       </div>
     </header>
