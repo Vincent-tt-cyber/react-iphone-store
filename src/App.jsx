@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import { NotFoundPage } from "./pages/NotFound/NotFoundPage";
 import { HomePage } from "./pages/Home/HomePage";
+import { ProductsProvider } from "./context/ProductsProvider";
 
 /* 
   FIXME: Images from https://cheboksary.stores-apple.com/
@@ -10,16 +11,18 @@ import { HomePage } from "./pages/Home/HomePage";
 
 function App() {
   return (
-    <main className="wrapper">
-      <Header />
-      <div className="container">
-        <Routes>
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </div>
-      <Footer />
-    </main>
+    <ProductsProvider>
+      <main className="wrapper">
+        <Header />
+        <div className="container">
+          <Routes>
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </main>
+    </ProductsProvider>
   );
 }
 
