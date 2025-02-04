@@ -1,41 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { GroupProduct } from "../../components/ui/GroupProduct/GroupProduct";
 import LayoutProducts from "../../components/ui/LayoutProducts/LayoutProducts";
-import { iphonesData } from "../../data/productsData";
+import { ProductsContext } from "../../context/ProductsProvider";
+import { Loader } from "../../components/ui/Loader/Loader";
 
 export const HomePage = () => {
-  const [productsData, setProductsData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const { products, isLoading } = useContext(ProductsContext);
 
-  const fetchProducts = () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setProductsData(iphonesData);
-      setIsLoading(false);
-    }, 1000);
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div style={{ textAlign: "center", fontSize: "20px", color: "#f67373" }}>
-        Загружаем товары...
-      </div>
-    );
-  }
+  if (isLoading) return <Loader />;
 
   return (
     <LayoutProducts type="column">
-      {productsData ? (
-        productsData.map((groups) => (
+      {products ? (
+        products.map((groups) => (
           <GroupProduct key={groups.id} id={groups.id} groupList={groups} />
         ))
       ) : (
-        <div>Error. Try again</div>
+        <div>Ошибка получения данных. Попробуйте позже.</div>
       )}
     </LayoutProducts>
   );
