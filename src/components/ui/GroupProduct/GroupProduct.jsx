@@ -8,7 +8,10 @@ export const GroupProduct = ({ groupList }) => {
       <h1>{groupList.groupName}</h1>
       <LayoutProducts type="grid">
         {groupList.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={`${product.id}-${product.title}`}
+            product={product}
+          />
         ))}
       </LayoutProducts>
     </div>

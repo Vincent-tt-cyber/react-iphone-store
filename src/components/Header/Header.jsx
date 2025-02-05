@@ -9,8 +9,12 @@ import {
   Wrench,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { ProductsContext } from "../../context/ProductsProvider";
+import { useContext, useEffect, useState } from "react";
 
 const Header = () => {
+  const [coutCart, setCoutCart] = useState(0);
+  const { cart } = useContext(ProductsContext);
   const location = useLocation();
 
   const headerLinks = [
@@ -39,6 +43,10 @@ const Header = () => {
       icon: <Wrench size={20} />,
     },
   ];
+
+  useEffect(() => {
+    setCoutCart(cart.length);
+  }, [cart]);
 
   return (
     <header className={styles["header"]}>
@@ -79,7 +87,9 @@ const Header = () => {
                 className={styles["header-cart__btn-icon"]}
                 size={30}
               />
-              <span className={styles["header-cart__btn-count"]}>0</span>
+              <span className={styles["header-cart__btn-count"]}>
+                {coutCart}
+              </span>
             </button>
           </nav>
         </div>

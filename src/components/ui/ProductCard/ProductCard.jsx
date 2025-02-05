@@ -3,14 +3,25 @@ import React from "react";
 import styles from "./ProductCard.module.scss";
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
+import { ProductsContext } from "../../../context/ProductsProvider";
 
 const ProductCard = ({ product }) => {
+  const { addProductToCart, removeProductFromCart } =
+    React.useContext(ProductsContext);
+
   const [discountPercent, setDiscountPercent] = React.useState(0);
   const [isAdded, setIsAdded] = React.useState(false);
 
   // Добавление товара в корзину
   const toggleAddToCart = () => {
-    setIsAdded(!isAdded);
+    // Добавление в корзину
+    if (isAdded) {
+      setIsAdded(false);
+      removeProductFromCart(product.id);
+    } else {
+      setIsAdded(true);
+      addProductToCart(product);
+    }
   };
 
   // Расчет скидки в процентах
@@ -65,7 +76,7 @@ const ProductCard = ({ product }) => {
         onClick={toggleAddToCart}
       >
         <span className={styles["card__btn-title"]}>
-          {isAdded ? "Удалить из корзины" : "Добавить в корзину"}
+          {isAdded ? "В корзине" : "В корзину"}
         </span>
 
         <Plus className={styles["card__btn-icon"]} />
