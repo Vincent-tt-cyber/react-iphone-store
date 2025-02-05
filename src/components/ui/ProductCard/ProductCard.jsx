@@ -2,13 +2,20 @@
 import React from "react";
 import styles from "./ProductCard.module.scss";
 import { Link } from "react-router-dom";
+import { Plus } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   const [discountPercent, setDiscountPercent] = React.useState(0);
+  const [isAdded, setIsAdded] = React.useState(false);
+
+  // Добавление товара в корзину
+  const toggleAddToCart = () => {
+    setIsAdded(!isAdded);
+  };
+
   // Расчет скидки в процентах
   const discountPriceHandle = (product) => {
     const { oldPrice, price } = product;
-
     const result = Math.floor(((oldPrice - price) / oldPrice) * 100);
     setDiscountPercent(result);
   };
@@ -53,6 +60,16 @@ const ProductCard = ({ product }) => {
           </span>
         </div>
       </Link>
+      <button
+        className={isAdded ? styles["card__btn-active"] : styles["card__btn"]}
+        onClick={toggleAddToCart}
+      >
+        <span className={styles["card__btn-title"]}>
+          {isAdded ? "Удалить из корзины" : "Добавить в корзину"}
+        </span>
+
+        <Plus className={styles["card__btn-icon"]} />
+      </button>
     </div>
   );
 };
