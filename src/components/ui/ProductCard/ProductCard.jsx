@@ -13,12 +13,14 @@ const ProductCard = ({ product }) => {
   const [isAdded, setIsAdded] = React.useState(false);
 
   // Добавление товара в корзину
-  const toggleAddToCart = () => {
-    // Добавление в корзину
+  const toggleAddToCart = (product) => {
+    // Удаление товара из корзины
     if (isAdded) {
       setIsAdded(false);
+      // console.log("Удален из корзины", product);
       removeProductFromCart(product.id);
     } else {
+      // Добавление товара в корзину
       setIsAdded(true);
       addProductToCart(product);
     }
@@ -73,7 +75,7 @@ const ProductCard = ({ product }) => {
       </Link>
       <button
         className={isAdded ? styles["card__btn-active"] : styles["card__btn"]}
-        onClick={toggleAddToCart}
+        onClick={() => toggleAddToCart(product)}
       >
         <span className={styles["card__btn-title"]}>
           {isAdded ? "В корзине" : "В корзину"}
