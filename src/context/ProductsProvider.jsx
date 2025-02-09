@@ -13,11 +13,12 @@ export const ProductsProvider = ({ children }) => {
   // Добавление товара в корзину
   const addProductToCart = (product) => {
     setCart([...cart, product]);
-    console.log("Добавлен в корзину", product);
+    // console.log("Добавлен в корзину", product);
   };
 
   // Удаление товара из корзины
   const removeProductFromCart = (id) => {
+    // console.log("Удален из корзины", id);
     setCart(cart.filter((item) => item.id !== id));
   };
 

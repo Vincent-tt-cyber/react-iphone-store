@@ -4,7 +4,7 @@ export const iphonesData = [
     groupName: "Apple iPhone 11 64ГБ",
     products: [
       {
-        id: 1,
+        id: "iPhone_11_64GB_1",
         title: "Apple iPhone 11",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/f14/450_450_140cd750bba9870f18aada2478b24840a/2h9i7nrbrrmevwsqo7t5h0bfp3sgnmis.jpg",
@@ -18,7 +18,7 @@ export const iphonesData = [
         store: "64ГБ",
       },
       {
-        id: 2,
+        id: "iPhone_11_64GB_2",
         title: "Apple iPhone 11",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/1ae/450_450_140cd750bba9870f18aada2478b24840a/kjp8t7g92174c7rcmi5i7sl1ek5keskp.jpg",
@@ -32,7 +32,7 @@ export const iphonesData = [
         store: "64ГБ",
       },
       {
-        id: 3,
+        id: "iPhone_11_64GB_3",
         title: "Apple iPhone 11",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/156/450_450_140cd750bba9870f18aada2478b24840a/ckugwn9z2r1yakl793pofb7ubdmui56a.jpg",
@@ -52,7 +52,7 @@ export const iphonesData = [
     groupName: "Apple iPhone 12 128ГБ",
     products: [
       {
-        id: 1,
+        id: "iPhone_12_128GB_1",
         title: "Apple iPhone 12",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/iblock/c92/r0d5o43by3uzqe98rykmzq0fdfbs00ym.jpg",
@@ -66,7 +66,7 @@ export const iphonesData = [
         store: "128ГБ",
       },
       {
-        id: 2,
+        id: "iPhone_12_128GB_2",
         title: "Apple iPhone 12",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/9b6/450_450_140cd750bba9870f18aada2478b24840a/l39qq06rhs6oqbd6lhaj81pp3qge7817.jpg",
@@ -80,7 +80,7 @@ export const iphonesData = [
         store: "128ГБ",
       },
       {
-        id: 3,
+        id: "iPhone_12_128GB_3",
         title: "Apple iPhone 12",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/195/450_450_140cd750bba9870f18aada2478b24840a/hkol029c2uo4sok5rxktja684cjc3d6i.jpg",
@@ -94,7 +94,7 @@ export const iphonesData = [
         store: "128ГБ",
       },
       {
-        id: 4,
+        id: "iPhone_12_128GB_4",
         title: "Apple iPhone 12",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/e2b/450_450_140cd750bba9870f18aada2478b24840a/c0xzrs75vign4r0l1szm88q08oogv57s.jpg",
@@ -108,7 +108,7 @@ export const iphonesData = [
         store: "128ГБ",
       },
       {
-        id: 5,
+        id: "iPhone_12_128GB_5",
         title: "Apple iPhone 12",
         imageUrl: [
           "https://cheboksary.stores-apple.com/upload/resize_cache/iblock/b48/450_450_140cd750bba9870f18aada2478b24840a/o67x4so94pwry6hi4z2w7aa2f2zqwk66.jpg",
