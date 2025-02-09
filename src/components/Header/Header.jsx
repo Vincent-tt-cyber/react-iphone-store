@@ -11,9 +11,11 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { ProductsContext } from "../../context/ProductsProvider";
 import { useContext, useEffect, useState } from "react";
+import { LeftHeaderMenu } from "../ui/LeftHeaderMenu/LeftHeaderMenu";
 
 const Header = () => {
   const [coutCart, setCoutCart] = useState(0);
+  const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
   const { cart } = useContext(ProductsContext);
   const location = useLocation();
 
@@ -78,7 +80,14 @@ const Header = () => {
                 </li>
               ))}
             </ul>
-            <div className={styles["header-menu-burger"]}>
+            <div
+              onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
+              className={
+                isOpenBurgerMenu
+                  ? styles["header-menu-burger-active"]
+                  : styles["header-menu-burger"]
+              }
+            >
               <Menu color="#fff" size={25} />
             </div>
             <button className={styles["header-cart__btn"]}>
@@ -93,6 +102,29 @@ const Header = () => {
             </button>
           </nav>
         </div>
+      </div>
+      <div
+        className={
+          isOpenBurgerMenu
+            ? styles["left-header-menu-active"]
+            : styles["left-header-menu"]
+        }
+      >
+        <LeftHeaderMenu>
+          {headerLinks.map((link) => (
+            <Link
+              key={link.id}
+              to={link.path}
+              className={
+                location.pathname === link.path
+                  ? styles["left-header-menu__link-active"]
+                  : styles["left-header-menu__link"]
+              }
+            >
+              {link.title}
+            </Link>
+          ))}
+        </LeftHeaderMenu>
       </div>
     </header>
   );
