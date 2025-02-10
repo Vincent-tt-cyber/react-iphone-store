@@ -113,6 +113,7 @@ const Header = () => {
         <LeftHeaderMenu>
           {headerLinks.map((link) => (
             <Link
+              onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
               key={link.id}
               to={link.path}
               className={
