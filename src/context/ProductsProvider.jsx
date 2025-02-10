@@ -33,6 +33,7 @@ export const ProductsProvider = ({ children }) => {
     // console.log(products);
   };
 
+  // Получение продуктов при загрузке страницы
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -52,3 +53,4 @@ export const ProductsProvider = ({ children }) => {
     </ProductsContext.Provider>
   );
 };
+  
