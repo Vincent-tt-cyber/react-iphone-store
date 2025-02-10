@@ -1,3 +1,4 @@
+// import ContentLoader from "react-content-loader";
 import styles from "./Loader.module.scss";
 export const Loader = () => {
   return (
