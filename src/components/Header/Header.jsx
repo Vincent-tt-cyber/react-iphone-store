@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { ProductsContext } from "../../context/ProductsProvider";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { LeftHeaderMenu } from "../ui/LeftHeaderMenu/LeftHeaderMenu";
 
 const Header = () => {
@@ -18,6 +18,8 @@ const Header = () => {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
   const { cart } = useContext(ProductsContext);
   const location = useLocation();
+
+  const menuRef = useRef(null);
 
   const headerLinks = [
     {
@@ -50,6 +52,22 @@ const Header = () => {
     setCoutCart(cart.length);
   }, [cart]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+
+      // console.log(menuRef);
+      
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpenBurgerMenu(false); // Закрытие, если клик происходит за пределами меню
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <header className={styles["header"]}>
       <div className="container">
@@ -104,6 +122,7 @@ const Header = () => {
         </div>
       </div>
       <div
+        ref={menuRef}
         className={
           isOpenBurgerMenu
             ? styles["left-header-menu-active"]
