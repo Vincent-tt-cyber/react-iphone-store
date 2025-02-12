@@ -16,10 +16,12 @@ import { LeftHeaderMenu } from "../ui/LeftHeaderMenu/LeftHeaderMenu";
 const Header = () => {
   const [coutCart, setCoutCart] = useState(0);
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const { cart } = useContext(ProductsContext);
   const location = useLocation();
 
   const menuRef = useRef(null);
+  const headerRef = useRef(null);
 
   const headerLinks = [
     {
@@ -48,15 +50,16 @@ const Header = () => {
     },
   ];
 
+  // Количество товаров в корзине
   useEffect(() => {
     setCoutCart(cart.length);
   }, [cart]);
 
+  // Клик вне меню
   useEffect(() => {
     const handleClickOutside = (event) => {
-
       // console.log(menuRef);
-      
+
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpenBurgerMenu(false); // Закрытие, если клик происходит за пределами меню
       }
@@ -68,8 +71,27 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Фиксированная шапка
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        const headerHight = headerRef.current.clientHeight + headerRef.current.clientHeight;
+        console.log(headerHight);
+        setIsHeaderFixed(window.scrollY > headerHight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <header className={styles["header"]}>
+    <header
+      ref={headerRef}
+      className={isHeaderFixed ? styles["header-fixed"] : styles["header"]}
+    >
       <div className="container">
         <div className={styles["header-row"]}>
           <Link to="/" className={styles["header-logo"]}>
