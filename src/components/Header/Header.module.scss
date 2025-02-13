@@ -1,10 +1,20 @@
 .header {
-  position: relative;
+  // position: relative;
+  // background-color: #333;
+  // margin: 0 0 50px 0;
+  // border-bottom: 2px solid #f67373;
+  // transition: all 0.3s ease;
+  
+  position: sticky; // Измените на sticky
+  top: 0; // Прилепить к верхней части окна
   padding: 20px 0;
+  // padding: 20px 0;
   background-color: #333;
   margin: 0 0 50px 0;
   border-bottom: 2px solid #f67373;
-  transition: all 0.3s ease;
+  z-index: 1000; // Убедитесь, что шапка выше других элементов
+  transition: background-color 0.3s ease, padding 0.3s ease, all 0.3s ease;
+  // padding: 10px 0;
 
   &-fixed {
     position: sticky; // Измените на sticky

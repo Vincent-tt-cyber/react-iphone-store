@@ -12,12 +12,13 @@ import { Link, useLocation } from "react-router-dom";
 import { ProductsContext } from "../../context/ProductsProvider";
 import { useContext, useEffect, useRef, useState } from "react";
 import { LeftHeaderMenu } from "../ui/LeftHeaderMenu/LeftHeaderMenu";
+import { CartPopupWindow } from "../ui/CartPopupWindow/CartPopupWindow";
 
 const Header = () => {
   const [coutCart, setCoutCart] = useState(0);
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
-  const { cart } = useContext(ProductsContext);
+  const { cart, isCartOpen, setIsCartOpen } = useContext(ProductsContext);
   const location = useLocation();
 
   const menuRef = useRef(null);
@@ -76,8 +77,9 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
-        const headerHight = headerRef.current.clientHeight + headerRef.current.clientHeight;
-        console.log(headerHight);
+        const headerHight =
+          headerRef.current.clientHeight + headerRef.current.clientHeight;
+        // console.log(headerHight);
         setIsHeaderFixed(window.scrollY > headerHight);
       }
     };
@@ -88,87 +90,93 @@ const Header = () => {
     };
   }, []);
   return (
-    <header
-      ref={headerRef}
-      className={isHeaderFixed ? styles["header-fixed"] : styles["header"]}
-    >
-      <div className="container">
-        <div className={styles["header-row"]}>
-          <Link to="/" className={styles["header-logo"]}>
-            <h1>React iPhone Store</h1>
-            <Smartphone
-              className={styles["header-logo__icon"]}
-              size={30}
-              color="#f67373"
-            />
-          </Link>
-          <nav className={styles["header__nav"]}>
-            <ul className={styles["header-menu"]}>
-              {headerLinks.map((link) => (
-                <li key={link.id} className={styles["header-menu__item"]}>
-                  <Link
-                    to={link.path}
-                    className={
-                      location.pathname === link.path
-                        ? styles["header-menu__item-link-active"]
-                        : styles["header-menu__item-link"]
-                    }
-                  >
-                    <div>{link.icon}</div>
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div
-              onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
-              className={
-                isOpenBurgerMenu
-                  ? styles["header-menu-burger-active"]
-                  : styles["header-menu-burger"]
-              }
-            >
-              <Menu color="#fff" size={25} />
-            </div>
-            <button className={styles["header-cart__btn"]}>
-              <ShoppingBag
-                color="#fff"
-                className={styles["header-cart__btn-icon"]}
-                size={30}
-              />
-              <span className={styles["header-cart__btn-count"]}>
-                {coutCart}
-              </span>
-            </button>
-          </nav>
-        </div>
-      </div>
-      <div
-        ref={menuRef}
-        className={
-          isOpenBurgerMenu
-            ? styles["left-header-menu-active"]
-            : styles["left-header-menu"]
-        }
+    <>
+      <header
+        ref={headerRef}
+        className={isHeaderFixed ? styles["header-fixed"] : styles["header"]}
       >
-        <LeftHeaderMenu>
-          {headerLinks.map((link) => (
-            <Link
-              onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
-              key={link.id}
-              to={link.path}
-              className={
-                location.pathname === link.path
-                  ? styles["left-header-menu__link-active"]
-                  : styles["left-header-menu__link"]
-              }
-            >
-              {link.title}
+        <div className="container">
+          <div className={styles["header-row"]}>
+            <Link to="/" className={styles["header-logo"]}>
+              <h1>React iPhone Store</h1>
+              <Smartphone
+                className={styles["header-logo__icon"]}
+                size={30}
+                color="#f67373"
+              />
             </Link>
-          ))}
-        </LeftHeaderMenu>
-      </div>
-    </header>
+            <nav className={styles["header__nav"]}>
+              <ul className={styles["header-menu"]}>
+                {headerLinks.map((link) => (
+                  <li key={link.id} className={styles["header-menu__item"]}>
+                    <Link
+                      to={link.path}
+                      className={
+                        location.pathname === link.path
+                          ? styles["header-menu__item-link-active"]
+                          : styles["header-menu__item-link"]
+                      }
+                    >
+                      <div>{link.icon}</div>
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div
+                onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
+                className={
+                  isOpenBurgerMenu
+                    ? styles["header-menu-burger-active"]
+                    : styles["header-menu-burger"]
+                }
+              >
+                <Menu color="#fff" size={25} />
+              </div>
+              <button
+                onClick={() => setIsCartOpen(!isCartOpen)}
+                className={styles["header-cart__btn"]}
+              >
+                <ShoppingBag
+                  color="#fff"
+                  className={styles["header-cart__btn-icon"]}
+                  size={30}
+                />
+                <span className={styles["header-cart__btn-count"]}>
+                  {coutCart}
+                </span>
+              </button>
+            </nav>
+          </div>
+        </div>
+        <div
+          ref={menuRef}
+          className={
+            isOpenBurgerMenu
+              ? styles["left-header-menu-active"]
+              : styles["left-header-menu"]
+          }
+        >
+          <LeftHeaderMenu>
+            {headerLinks.map((link) => (
+              <Link
+                onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
+                key={link.id}
+                to={link.path}
+                className={
+                  location.pathname === link.path
+                    ? styles["left-header-menu__link-active"]
+                    : styles["left-header-menu__link"]
+                }
+              >
+                {link.title}
+              </Link>
+            ))}
+          </LeftHeaderMenu>
+        </div>
+      </header>
+      {isCartOpen && <CartPopupWindow />}
+    </>
   );
 };
 

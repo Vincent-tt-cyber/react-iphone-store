@@ -6,9 +6,9 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  // const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Добавление товара в корзину
   const addProductToCart = (product) => {
@@ -38,19 +38,33 @@ export const ProductsProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isCartOpen])
+
   return (
     <ProductsContext.Provider
       value={{
+        // Продукты и корзина
         cart,
         setCart,
+
+        // Функции для работы с продуктами
         addProductToCart,
         removeProductFromCart,
         products,
         isLoading,
+
+        // Корзина
+        isCartOpen,
+        setIsCartOpen,
       }}
     >
       {children}
     </ProductsContext.Provider>
   );
 };
-  
