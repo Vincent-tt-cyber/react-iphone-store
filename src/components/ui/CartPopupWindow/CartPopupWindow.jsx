@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./CartPopupWindow.module.scss";
 import { ProductsContext } from "../../../context/ProductsProvider";
+import { X } from "lucide-react";
 export const CartPopupWindow = () => {
   const [cartCountProducts, setcartCountProducts] = useState(0);
 
@@ -19,12 +20,8 @@ export const CartPopupWindow = () => {
           onClick={handleClose}
           className={styles["cart-popup-window__close"]}
         >
-          Закрыть
+         <X/>
         </button>
-        {/* <h1 className={styles["cart-popup-window__title"]}>
-          Ваша корзина{" "}
-          {cartCountProducts > 0 ? `(${cartCountProducts})` : "пуста"}
-        </h1> */}
         <ul
           className={styles["cart-popup-window__list"]}
           style={
