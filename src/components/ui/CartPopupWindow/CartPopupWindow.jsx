@@ -20,10 +20,14 @@ export const CartPopupWindow = () => {
           onClick={handleClose}
           className={styles["cart-popup-window__close"]}
         >
-         <X/>
+          <X />
         </button>
         <ul
-          className={styles["cart-popup-window__list"]}
+          className={
+            cartCountProducts > 0
+              ? styles["cart-popup-window__grid"]
+              : styles["art-popup-window__flex"]
+          }
           style={
             cartCountProducts > 0
               ? { overflowY: "scroll" }
