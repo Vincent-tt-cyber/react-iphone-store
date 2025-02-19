@@ -61,6 +61,8 @@
     }
   }
   &__item {
+    overflow: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -86,6 +88,18 @@
       p {
         color: #ccc;
       }
+    }
+    &-count {
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #f67373;
+      padding: 5px;
+      border-radius: 8px;
     }
     &-image {
       max-width: 100px;
@@ -116,6 +130,29 @@
     }
     &-price {
       color: #f67373;
+      margin-bottom: 35px;
+    }
+    &-buttons {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 1px;
+      button {
+        padding: 5px 10px;
+        background-color: #f67373;
+        // border: 1px solid #333;
+        width: 100%;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        color: #fff;
+        &:hover {
+          background-color: #b35353;
+          // color: #fff;
+          transition: all 0.3s ease;
+        }
+      }
     }
   }
 }
