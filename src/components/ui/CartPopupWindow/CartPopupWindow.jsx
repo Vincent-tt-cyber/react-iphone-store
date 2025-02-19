@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./CartPopupWindow.module.scss";
 import { ProductsContext } from "../../../context/ProductsProvider";
-import { X } from "lucide-react";
+import { Minus, Plus, X } from "lucide-react";
 export const CartPopupWindow = () => {
   const [cartCountProducts, setcartCountProducts] = useState(0);
+  const [productCount, setProductCount] = useState(0);
 
   const { cart, setIsCartOpen } = useContext(ProductsContext);
 
@@ -40,6 +41,7 @@ export const CartPopupWindow = () => {
                 className={styles["cart-popup-window__item"]}
                 key={`${product.id}-${product.title}`}
               >
+                <div className={styles["cart-popup-window__item-count"]}>{productCount} шт.</div>
                 <img
                   className={styles["cart-popup-window__item-image"]}
                   src={product.imageUrl[0]}
@@ -59,6 +61,14 @@ export const CartPopupWindow = () => {
                     currency: "RUB",
                   })}
                 </p>
+                <div className={styles["cart-popup-window__item-buttons"]}>
+                  <button>
+                    <Plus />
+                  </button>
+                  <button>
+                    <Minus />
+                  </button>
+                </div>
               </li>
             ))
           ) : (
