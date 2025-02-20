@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { ProductsContext } from "../../../context/ProductsProvider";
 
 const ProductCard = ({ product }) => {
-  const { addProductToCart, removeProductFromCart } =
+  const { cart, addProductToCart, removeProductFromCart } =
     React.useContext(ProductsContext);
 
   const [discountPercent, setDiscountPercent] = React.useState(0);
@@ -15,9 +15,8 @@ const ProductCard = ({ product }) => {
   // Добавление товара в корзину
   const toggleAddToCart = (product) => {
     // Удаление товара из корзины
-    if (isAdded) {
+    if (isAdded && cart.find((item) => item.id === product.id)) {
       setIsAdded(false);
-      // console.log("Удален из корзины", product);
       removeProductFromCart(product.id);
     } else {
       // Добавление товара в корзину
@@ -35,7 +34,14 @@ const ProductCard = ({ product }) => {
 
   React.useEffect(() => {
     discountPriceHandle(product);
-  }, []);
+
+    // Если товар есть в корзине, менять isAdded
+    if (cart.find((item) => item.id === product.id)) {
+      setIsAdded(true);
+    } else {
+      setIsAdded(false);
+    }
+  }, [cart]);
 
   return (
     <div className={styles["card"]}>
