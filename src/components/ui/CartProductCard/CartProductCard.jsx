@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styles from "./CartProductCard.module.scss";
 import { Minus, Plus } from "lucide-react";
+import { ProductsContext } from "../../../context/ProductsProvider";
 const CartProductCard = ({ product }) => {
-  const [productCount, setProductCount] = useState(0);
+  const { removeProductFromCart } = React.useContext(ProductsContext);
+  const [productCount, setProductCount] = useState(1);
 
   const handleProductCountPlus = () => {
     // MAX 10
@@ -10,7 +12,11 @@ const CartProductCard = ({ product }) => {
   };
   const handleProductCountMinus = () => {
     // MIN 1
-    productCount > 1 && setProductCount(productCount - 1);
+    // productCount > 1 && setProductCount(productCount - 1);
+    productCount > 1
+      ? setProductCount(productCount - 1)
+      : removeProductFromCart(product.id);
+    // productCount == 0 && removeProductFromCart(product.id);
   };
 
   return (
