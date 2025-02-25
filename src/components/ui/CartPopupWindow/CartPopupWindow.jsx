@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 export const CartPopupWindow = () => {
   const [cartCountProducts, setcartCountProducts] = useState(0);
 
-  const { cart, setIsCartOpen } = useContext(ProductsContext);
+  const { cart, setIsCartOpen, totalSum } = useContext(ProductsContext);
 
   const handleClose = () => setIsCartOpen(false);
 
@@ -17,12 +17,23 @@ export const CartPopupWindow = () => {
   return (
     <div className={styles["cart-popup-window"]}>
       <div className={styles["cart-popup-window__wrapper"]}>
-        <button
-          onClick={handleClose}
-          className={styles["cart-popup-window__close"]}
-        >
-          <X />
-        </button>
+        <div className={styles["cart-popup-window__header"]}>
+          <button
+            onClick={handleClose}
+            className={styles["cart-popup-window__close"]}
+          >
+            <X />
+          </button>
+          <div className={styles["cart-popup-window__total"]}>
+            <h3>Сумма:</h3>
+            <span>
+              {totalSum.toLocaleString("ru-RU", {
+                style: "currency",
+                currency: "RUB",
+              })}
+            </span>
+          </div>
+        </div>
         <ul
           className={
             cartCountProducts > 0

@@ -22,6 +22,19 @@
     overflow: hidden;
   }
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__total {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__close {
     color: #f67373;
     text-align: center;

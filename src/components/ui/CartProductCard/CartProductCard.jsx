@@ -3,20 +3,25 @@ import styles from "./CartProductCard.module.scss";
 import { Minus, Plus } from "lucide-react";
 import { ProductsContext } from "../../../context/ProductsProvider";
 const CartProductCard = ({ product }) => {
-  const { removeProductFromCart } = React.useContext(ProductsContext);
+  const { removeProductFromCart, totalSum, setTotalSum } =
+    React.useContext(ProductsContext);
   const [productCount, setProductCount] = useState(1);
 
   const handleProductCountPlus = () => {
     // MAX 10
     productCount < 10 && setProductCount(productCount + 1);
+    productCount < 10 && setTotalSum(totalSum + product.price);
   };
   const handleProductCountMinus = () => {
     // MIN 1
     // productCount > 1 && setProductCount(productCount - 1);
-    productCount > 1
-      ? setProductCount(productCount - 1)
-      : removeProductFromCart(product.id);
-    // productCount == 0 && removeProductFromCart(product.id);
+
+    if (productCount > 1) {
+      setProductCount(productCount - 1);
+      setTotalSum(totalSum - product.price);
+    } else if (productCount === 1) {
+      removeProductFromCart(product.id);
+    }
   };
 
   return (
