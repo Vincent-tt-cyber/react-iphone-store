@@ -9,6 +9,12 @@ export const ProductsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [totalSum, setTotalSum] = useState(0);
+
+  // Общая сумма товаров в корзине
+  useEffect(() => {
+    setTotalSum(cart.reduce((sum, item) => sum + item.price, 0));
+  }, [cart]);
 
   // Добавление товара в корзину
   const addProductToCart = (product) => {
@@ -44,7 +50,7 @@ export const ProductsProvider = ({ children }) => {
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [isCartOpen])
+  }, [isCartOpen]);
 
   return (
     <ProductsContext.Provider
@@ -62,6 +68,8 @@ export const ProductsProvider = ({ children }) => {
         // Корзина
         isCartOpen,
         setIsCartOpen,
+        totalSum,
+        setTotalSum,
       }}
     >
       {children}
